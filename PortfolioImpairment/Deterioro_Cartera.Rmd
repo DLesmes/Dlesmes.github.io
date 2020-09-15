@@ -1,0 +1,184 @@
+---
+title: "Deterioro de Cartera "
+author: "Diego Lesmes"
+date: "15/09/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Objetivo
+
+Desarrollar un modelo o modelos de deterioro de cartera que permitan generar un estimador según los **días de mora** de cada factura  (A, B, C, D, E),  para esto se debe mostrar en cada categoría cuál es la **probabilidad de no pago** de las mismas; este modelo debe mostrar los mejores resultados globales y una parametrización por **sector económico del cliente**. 
+
+### Cargamos el dataset
+
+```{r, echo=FALSE}
+library(tidyverse)
+library(dslabs)
+library(dplyr)
+library(lubridate)
+library(readr)
+library(ggplot2)
+library("gridExtra")
+library(tidyr)
+library(e1071)
+library("caret")
+
+data <- read_delim('Cartera_Prueba.csv', delim = ";")#,fileEncoding="utf-8")#,col_types = 'dicddniinc')
+data <- data.frame(data, stringsAsFactors = TRUE)
+data$'A_FECHA' <-dmy(data$'A_FECHA')
+data$'FECHA' <-dmy(data$'FECHA')
+data$'FECHA_VTO' <-dmy(data$'FECHA_VTO')
+campos <- colnames(data)
+campos[9] <- 'Dias_mora'
+colnames(data) = campos
+data <- data %>% mutate('Categoria'= ifelse(data$ESTADO == 1,'A',
+                                     ifelse(data$ESTADO == 2,'B',
+                                     ifelse(data$ESTADO == 3,'C',
+                                     ifelse(data$ESTADO == 4,'D','E')))))
+data <- data %>%  mutate('Record' = paste(NRO_FACTURA,FECHA_VTO,sep=""))
+index <- which(is.na(data$NRO_FACTURA))
+data <- data %>% slice(-index)
+index <- which(is.na(data$FECHA_VTO))
+data <- data %>% slice(-index)
+```
+A continuación se describen las variables que contiene el archivo para la prueba:
+A_Fecha: Fecha de corte para cálculo de días de mora
+ID: ID de factura en base de datos
+Nro_Factura: Número factura
+Fecha: Fecha emisión factura
+Fecha_Vto: Fecha vencimiento factura
+Saldo_a_Fecha: Saldo pendiente pago
+Mes: Consecutivo del mes histórico 
+Estado: Categoría de clasificación de mora (1, 2, 3, 4, 5)
+Dias_mora: días de mora para el pago de la factura
+Sector: Sector económico al cual pertenece el cliente
+
+```{r}
+summary(data)
+```
+## EDA
+
+```{r, echo=FALSE}
+G1 <- data %>% ggplot(aes(Dias_mora, Sector)) +
+  geom_boxplot()
+
+G2 <- data %>% ggplot(aes(Dias_mora, Categoria)) +
+  geom_boxplot()
+
+G4 <- data %>% ggplot(aes(SALDO_A_FECHA, Categoria)) +
+  geom_boxplot()
+
+G3 <- data %>% filter(SALDO_A_FECHA < 5e+10) %>% 
+  ggplot(aes(x=Dias_mora, y=SALDO_A_FECHA, color = Sector))+
+  geom_point()
+
+grid.arrange(G1, G2, G3, G4, 
+             ncol=2, nrow=2, widths=c(3,2), heights=c(2,3))
+
+data %>%  filter(Dias_mora > 0) %>% 
+  group_by(Categoria) %>% 
+  summarise('li' = min(Dias_mora),
+            'ls' = max(Dias_mora),
+            'cantidad' = length(ID)) %>% 
+  mutate('%' = cantidad/nrow(data)*100)
+```
+
+Sin embargo, podemos ver de que el dataset corresponde al seguimiento de todas las facturas, debido a que el total de facturas es menor al total de registros, como se puede aprecia a continuación:
+
+```{r, echo=FALSE}
+for (i in colnames(data)){print(c(i,length(unique(pull(data, i)))))}
+```
+## Probabilidad de no pago
+
+Por lo cual definimos una tabla con las facturas vigentes, para proceder a realizar el análisis correspondiente, definiendo solamente las covariables a usar y una nueva covariable "Pagado" indicando si la factura tiene saldo.
+
+```{r, echo=FALSE}
+data <- data[order(data$FECHA_VTO, decreasing = FALSE), ]
+data <- data[order(data$NRO_FACTURA, decreasing = FALSE), ]
+data <- data %>% mutate('Fact+Reciente' = duplicated(NRO_FACTURA))
+fact <- data %>% 
+  filter(data$'Fact+Reciente' == 'FALSE') %>% 
+  select(SALDO_A_FECHA,Categoria,Sector)
+
+fact <- fact %>% mutate('Pagado' = ifelse(SALDO_A_FECHA <= 0,'No','Si'))
+fact$Categoria <- factor(fact$Categoria,
+                         levels = unique(fact$Categoria))
+fact$Sector <- factor(fact$Sector,
+                         levels = unique(fact$Sector))
+fact$Pagado <- factor(fact$Pagado,
+                         levels = unique(fact$Pagado))
+summary(fact)
+```
+
+De esta manera podemos visualizar la probabilidad de no pago por cada sector y cada Categoria.
+
+```{r, echo=FALSE}
+table(fact$Pagado)
+catxsec <- table(fact$Categoria,fact$Sector)
+catxsecxPag <- table(fact$Categoria,fact$Sector,fact$Pagado)
+table(fact$Categoria,fact$Pagado)
+table(fact$Sector,fact$Pagado)
+#catxsecxPag
+
+round(catxsecxPag[ , ,1]/catxsec*100,2)
+
+```
+
+## Modelo predictivo
+
+Para empezar utilizaremos  un modelo de regresión logística y predecir asi si la factura sera pagada o no.
+
+### Partición
+
+Procedemos a hacer una partición para poder evaluar así la precisión de los modelos.
+
+```{r}
+test_index <- createDataPartition(fact$Pagado, times = 1, p = 0.5, list = FALSE)
+train_set <- fact %>% slice(-test_index)
+test_set <- fact %>% slice(test_index)
+```
+
+### HotEncoding
+Decodificamos las variables categoricas
+
+```{r}
+y <- train_set$Pagado
+y_control <- test_set$Pagado
+train_HEncod <- data.frame(predict(dummyVars(" ~ Categoria+Sector", data = train_set), newdata = train_set))
+test_HEncod <- data.frame(predict(dummyVars(" ~ Categoria+Sector", data = test_set), newdata = test_set))
+
+```
+### Regresión Logística
+```{r}
+#Model_LR
+Model_LR <- glm(y ~ ., data = train_HEncod, family = "binomial")
+summary(Model_LR)
+```
+```{r}
+Prediction_LR <- predict(Model_LR,test_HEncod, type = "response", na.action = na.pass)
+#Desicion Rule
+plot(y_control,Prediction_LR)
+Prediction_LR_Fitted <- factor(ifelse(Prediction_LR < 0.2,'Si','No'),levels = c('Si','No'))
+confusionMatrix(Prediction_LR_Fitted,y_control)
+confusionMatrix(Prediction_LR_Fitted, y_control)$overall[["Accuracy"]]
+#table(Prediction_LR_Fitted,y_control)
+```
+
+
+
+
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+```{r}
+
+```

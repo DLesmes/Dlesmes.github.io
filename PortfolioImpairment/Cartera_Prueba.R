@@ -1,3 +1,4 @@
+#Librerias a usar
 library(tidyverse)
 library(dslabs)
 library(dplyr)
@@ -7,7 +8,7 @@ library(ggplot2)#gráficas
 library(tidyr)#Ordenar matrices y dataframes
 library(e1071)#Libreria de naivebayes
 library("caret")#ML
-#data <- read.delim('Cartera_Prueba.csv', sep = ";",fileEncoding="utf-8")
+#Lectura de la info
 data <- read_delim('Cartera_Prueba.csv', delim = ";")#,fileEncoding="utf-8")#,col_types = 'dicddniinc')
 data <- data.frame(data, stringsAsFactors = TRUE)
 data$'A_FECHA' <-dmy(data$'A_FECHA')
@@ -71,10 +72,6 @@ data %>%  group_by(Sector) %>%
 
 
 ggplot(data, aes(x=Dias_mora, y=SALDO_A_FECHA))+
-  geom_point()
-
-
-ggplot(dat, aes(x=Dias_mora, y=SALDO_A_FECHA, color = Sector))+
   geom_point()
 
 G3 <- data %>% filter(SALDO_A_FECHA < 5e+10) %>% 
@@ -219,5 +216,3 @@ str(Prediction_LR_Fitted)
 #confusionMatrix(Prediction_LR_Fitted, y_control)$overall[["Accuracy"]]
 confusionMatrix(Prediction_LR_Fitted,y_control)
 #table(Prediction_LR_Fitted,y_control)
-
-#

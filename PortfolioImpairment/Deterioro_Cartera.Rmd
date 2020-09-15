@@ -45,7 +45,7 @@ data <- data %>% slice(-index)
 index <- which(is.na(data$FECHA_VTO))
 data <- data %>% slice(-index)
 ```
-A continuación se describen las variables que contiene el conjunto de datos son:
+A continuación se describen las variables que contiene el conjunto de datos:
 
 * A_Fecha: Fecha de corte para cálculo de días de mora
 * ID: ID de factura en base de datos
@@ -75,7 +75,7 @@ hist(data$SALDO_A_FECHA,col = "light blue",
      xlab = "Saldo a la fecha")
 ```
 
-Efectivamente, se puede aprecia la presencia de atipicos, facturas con alrededor de 6000 dias de mora y facturas con saldos de 1.8 Billones de unidades monetarias, las siguientes gráficas nos confirman este hecho.
+Efectivamente, se aprecia la presencia de atípicos, facturas con alrededor de 6000 dias de mora y facturas con saldos de 1.8 Billones de unidades monetarias, las siguientes gráficas nos confirman este hecho.
 
 ```{r, echo=FALSE}
 G1 <- data %>% ggplot(aes(Dias_mora, Sector)) +
@@ -232,11 +232,11 @@ El dataset inicial se trataba del seguimiento del proceso de cartera para todas 
 
 En el **modelo de Regresión logística** fue necesario usar una regla de desición ajustada debido al desbalance presentado por las covariables, sin embargo se obtuvieron valores altos de Exactitud, la tasa de verdaderos positivos y la tasa de falsos positivos.
 
-Por su parte el **modelo de Navie Bayes** confirma que la informacion tiene un desbalance, en el sentido del bajo poder predictivo que se podia obtener de la información, por lo cual se obtiene una tasa de falsos positivos de cero, a pesar de que la Exactitud del modelo sea superior en comparación al modelo de Regresión Logística.
+Por su parte el **modelo de Navie Bayes** confirma que la informacion tiene un desbalance, en el sentido del bajo poder predictivo que se podia obtener de la información, por lo cual se obtiene una tasa de falsos positivos de cero, a pesar de que la Exactitud del modelo sea mayor en comparación al modelo de Regresión Logística.
 
-Se puede obtener un mayor **poder predictivo** para un conjunto de datos que contenga mas variables independientes que describan a las personas con obligaciones de pago, tales como, sexo, edad, Grado de escolaridad, estado civil, cantidad de hijos, Parimonio, valor de la cuota, cantidad de cuotas, entre otras; de esta manera se puede realizar un estudio mas completo y descriptivo sobre la intención de pago de los deudores.
+Se puede obtener un mayor **poder predictivo** para un conjunto de datos que contenga mas variables independientes que describan a las personas con obligaciones de pago, tales como, sexo, edad, Grado de escolaridad, estado civil, cantidad de hijos, Patrimonio, valor de la cuota, cantidad de cuotas, entre otras; de esta manera se puede realizar un estudio mas completo y descriptivo sobre la intención de pago de los deudores.
 
-Por ultimo es preciso tener en cuenta que los resultados de los diferentes modelos a utilizar, pueden mejorarse si se agregan al estudio aquellas facturas pagadas oportunamente, de esta manera se puede tener una perspectiva adecuada del comportamiento de pago de la población, evitando el desbalance presentado en este ejercicio.
+Por ultimo es preciso tener en cuenta que los resultados de los diferentes modelos a utilizar, pueden mejorarse si se agregan al estudio aquellas facturas pagadas oportunamente, de esta manera se puede tener una perspectiva adecuada del comportamiento de pago de la población, **evitando el desbalance** presentado en este ejercicio.
 
 ***
 

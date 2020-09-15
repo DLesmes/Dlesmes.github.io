@@ -31,6 +31,7 @@ str(data)
 colnames(data)
 for (i in colnames(data)){print(c(i,length(unique(pull(data, i)))))}
 
+###EDA_________________________________________________________________________
 
 hist(data$Dias_mora)
 
@@ -45,8 +46,8 @@ summary(data)
 
 (data$A_FECHA - data$FECHA_VTO) == data$Dias_mora
 
-a <- which(data$SALDO_A_FECHA == 0)
-nrow(data[a,])
+
+##Other Graphics
 
 G1 <- data %>% ggplot(aes(Dias_mora, Sector)) +
   geom_boxplot()
@@ -71,8 +72,6 @@ data %>%  filter(Dias_mora > 0) %>%
             'cantidad' = length(ID)) %>% 
   mutate('%' = cantidad/nrow(data)*100)
 
-#plot(data$Dias_mora, data$Sector, ylim = 500)
-
 data %>%  filter(Dias_mora > 0) %>% 
   group_by(Sector) %>% 
   summarise('li' = min(Dias_mora),
@@ -83,7 +82,6 @@ data %>%  filter(Dias_mora > 0) %>%
 ggplot(data, aes(x=Dias_mora, y=SALDO_A_FECHA))+
   geom_point()
 
-dat <- data %>% filter(SALDO_A_FECHA < 5e+10)
 
 ggplot(dat, aes(x=Dias_mora, y=SALDO_A_FECHA, color = Sector))+
   geom_point()
@@ -112,6 +110,9 @@ grid.arrange(G1, blankPlot, G3, G2,
 grid.arrange(G1, G2, G3, G4, 
              ncol=2, nrow=2, widths=c(3,2), heights=c(2,3))
 
+data %>% ggplot(aes(ID,Dias_mora)) +
+  geom_point(col="#009E73")
+
 G5 <- data %>% ggplot(aes(ID,Dias_mora)) +
   geom_point()
 
@@ -130,7 +131,8 @@ unique(data$Sector)
 
 grid.arrange(G1, G2, G3, G4, G5, G6,
              ncol=3, nrow=2)
-##Covariables
+
+##Covariables______________________________________________________________________
 
 data <- data[order(data$FECHA_VTO, decreasing = FALSE), ]
 data <- data[order(data$NRO_FACTURA, decreasing = FALSE), ]
@@ -170,29 +172,6 @@ table(fact$Sector,fact$Pagado)
 round(catxsecxPag[ , ,1]/catxsec*100,2)
 
 
-#G1 <- 
-fact %>% ggplot(aes(SALDO_A_FECHA, Sector)) +
-  geom_boxplot()
-
-#G2 <- 
-fact %>% ggplot(aes(SALDO_A_FECHA, Categoria)) +
-  geom_boxplot()
-
-#G4 <- data %>% ggplot(aes(SALDO_A_FECHA, Categoria)) +
-#  geom_boxplot()
-
-#G5 <- 
-fact %>% ggplot(aes(SALDO_A_FECHA, Pagado)) +
-  geom_boxplot()
-
-#G6 <- 
-fact %>% ggplot(aes( x=Categoria, y=Sector, color=Pagado)) +
-  geom_point()
-
-grid.arrange(G1, G2, G3, G4, G5, G6,
-             ncol=3, nrow=2)
-
-
 #Partición
 test_index <- createDataPartition(fact$Pagado, times = 1, p = 0.5, list = FALSE)
 train_set <- fact %>% slice(-test_index)
@@ -201,10 +180,11 @@ test_set <- fact %>% slice(test_index)
 fmla <- as.formula(paste("Pagado ~ ", paste("Categoria","Sector",sep = "+")))
 Model_NB <- naiveBayes(fmla,data=train_set)
 summary(Model_NB)
-Prediction_NB <- predict(object = Model_NB, newdata = test_set)
+Prediction_NB <- predict(object = Model_NB, newdata = test_set)#, type = "raw")
 #Metrics
 #confusionMatrix(Prediccion_NB, test_set$Pagado)$overall[["Accuracy"]]
-confusionMatrix(Prediccion_NB, test_set$Pagado)
+confusionMatrix(Prediction_NB, test_set$Pagado)
+
 #table(Prediccion_NB,test_set$Pagado)
 
 #HotEncoding

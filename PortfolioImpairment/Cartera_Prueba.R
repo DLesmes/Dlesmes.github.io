@@ -35,6 +35,11 @@ for (i in colnames(data)){print(c(i,length(unique(pull(data, i)))))}
 
 hist(data$Dias_mora)
 
+hist(data$SALDO_A_FECHA,col = "light blue",
+     main = "Disribución del saldo a la fecha",
+     xlab = "Saldo a la fecha")
+
+
 data$FECHA_VTO == data$FECHA
 
 data %>% group_by(Sector) %>% 
@@ -45,7 +50,6 @@ str(data)
 summary(data)
 
 (data$A_FECHA - data$FECHA_VTO) == data$Dias_mora
-
 
 ##Other Graphics
 
@@ -65,19 +69,6 @@ data %>%  group_by(Categoria) %>%
 data %>%  group_by(Sector) %>% 
   summarise(length(ID))
 
-data %>%  filter(Dias_mora > 0) %>% 
-  group_by(Categoria) %>% 
-  summarise('li' = min(Dias_mora),
-            'ls' = max(Dias_mora),
-            'cantidad' = length(ID)) %>% 
-  mutate('%' = cantidad/nrow(data)*100)
-
-data %>%  filter(Dias_mora > 0) %>% 
-  group_by(Sector) %>% 
-  summarise('li' = min(Dias_mora),
-            'ls' = max(Dias_mora),
-            'cantidad' = length(ID)) %>% 
-  mutate('%' = cantidad/nrow(data)*100)
 
 ggplot(data, aes(x=Dias_mora, y=SALDO_A_FECHA))+
   geom_point()
@@ -129,9 +120,32 @@ G6 <- data %>% ggplot(aes( x=ID, y=Sector, color=Categoria)) +
   geom_point()
 unique(data$Sector)
 
+#G7 <- 
+data %>% ggplot(aes(x=SALDO_A_FECHA)) +
+  geom_histogram( fill='green', alpha=0.5)
+
+data %>% ggplot(aes(x=Dias_mora)) +
+  geom_histogram(binwidth = 500, fill='green', alpha=0.5)+
+  ggtitle('Distribución de los días de mora')
+
 grid.arrange(G1, G2, G3, G4, G5, G6,
              ncol=3, nrow=2)
 
+## Pivot tables____________________________________________________
+
+data %>%  filter(Dias_mora > 0) %>% 
+  group_by(Categoria) %>% 
+  summarise('li' = min(Dias_mora),
+            'ls' = max(Dias_mora),
+            'cantidad' = length(ID)) %>% 
+  mutate('%' = cantidad/nrow(data)*100)
+
+data %>%  filter(Dias_mora > 0) %>% 
+  group_by(Sector) %>% 
+  summarise('li' = min(Dias_mora),
+            'ls' = max(Dias_mora),
+            'cantidad' = length(ID)) %>% 
+  mutate('%' = cantidad/nrow(data)*100)
 ##Covariables______________________________________________________________________
 
 data <- data[order(data$FECHA_VTO, decreasing = FALSE), ]

@@ -98,8 +98,8 @@ grid.arrange(G1, blankPlot, G3, G2,
 grid.arrange(G1, G2, G3, G4, 
              ncol=2, nrow=2, widths=c(3,2), heights=c(2,3))
 
-data %>% ggplot(aes(ID,Dias_mora)) +
-  geom_point(col="#009E73")
+data %>% ggplot(aes(ID,Dias_mora,color=Sector)) +
+  geom_point()#col="#009E73")
 
 G5 <- data %>% ggplot(aes(ID,Dias_mora)) +
   geom_point()
@@ -152,7 +152,7 @@ fact <- data %>%
   filter(data$'Fact+Reciente' == 'FALSE') %>% 
   select(SALDO_A_FECHA,Categoria,Sector)
 
-fact <- fact %>% mutate('Pagado' = ifelse(SALDO_A_FECHA <= 0,'No','Si'))
+fact <- fact %>% mutate('Pagado' = ifelse(SALDO_A_FECHA <= 0,'Si','No'))
 colnames(fact)
 str(fact)
 fact$Categoria <- factor(fact$Categoria,
@@ -178,10 +178,10 @@ catxsec <- table(fact$Categoria,fact$Sector)
 catxsecxPag <- table(fact$Categoria,fact$Sector,fact$Pagado)
 table(fact$Categoria,fact$Pagado)
 table(fact$Sector,fact$Pagado)
-#catxsecxPag
+catxsecxPag
 
 round(catxsecxPag[ , ,1]/catxsec*100,2)
-
+1+1
 
 #Partición
 test_index <- createDataPartition(fact$Pagado, times = 1, p = 0.5, list = FALSE)
@@ -210,7 +210,7 @@ summary(Model_LR)
 Prediction_LR <- predict(Model_LR,test_HEncod, type = "response", na.action = na.pass)
 #Desicion Rule
 plot(y_control,Prediction_LR)
-Prediction_LR_Fitted <- factor(ifelse(Prediction_LR < 0.2,'Si','No'),levels = c('Si','No'))
+Prediction_LR_Fitted <- factor(ifelse(Prediction_LR < 0.2,'No','Si'))#,levels = c('Si','No'))
 str(Prediction_LR_Fitted)
 #Metrics
 #confusionMatrix(Prediction_LR_Fitted, y_control)$overall[["Accuracy"]]

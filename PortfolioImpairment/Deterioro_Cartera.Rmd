@@ -105,8 +105,8 @@ data %>%  filter(Dias_mora > 0) %>%
 Sin embargo, podemos ver de que el conjunto de datos corresponde al seguimiento de todas las facturas, debido a que el total de facturas es menor al total de registros, indicando que hay varios registros para la misma factura; como se puede aprecia a continuación:
 
 ```{r, echo=FALSE}
-data %>% ggplot(aes(ID,Dias_mora)) +
-  geom_point(col="#009E73")+
+data %>% ggplot(aes(ID,Dias_mora,color=Sector)) +
+  geom_point()+
   ggtitle('Registros de los días de mora por cada factura')
 for (i in colnames(data)){print(c(i,length(unique(pull(data, i)))))}
 ```
@@ -123,7 +123,7 @@ fact <- data %>%
   filter(data$'Fact+Reciente' == 'FALSE') %>% 
   select(SALDO_A_FECHA,Categoria,Sector)
 
-fact <- fact %>% mutate('Pagado' = ifelse(SALDO_A_FECHA <= 0,'No','Si'))
+fact <- fact %>% mutate('Pagado' = ifelse(SALDO_A_FECHA <= 0,'Si','No'))
 fact$Categoria <- factor(fact$Categoria,
                          levels = unique(fact$Categoria))
 fact$Sector <- factor(fact$Sector,
@@ -195,7 +195,7 @@ Realizamos la predicción basado en el modelo anterior y en la regla de decisió
 Prediction_LR <- predict(Model_LR,test_HEncod, type = "response", na.action = na.pass)
 plot(y_control,Prediction_LR, col = "light yellow",
      main = "Regla de Decisión adecuada")
-Prediction_LR_Fitted <- factor(ifelse(Prediction_LR < 0.2,'Si','No'),levels = c('Si','No'))
+Prediction_LR_Fitted <- factor(ifelse(Prediction_LR < 0.2,'No','Si'))
 confusionMatrix(Prediction_LR_Fitted,y_control)
 ```
 

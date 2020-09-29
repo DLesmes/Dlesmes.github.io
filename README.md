@@ -1,4 +1,4 @@
-# Dlesmes.github.io
+
 # Casuistry
 
 This repo is the portfolio of applications of some R and Python libraries solving different cases through a data science process.

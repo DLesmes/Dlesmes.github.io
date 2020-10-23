@@ -1,0 +1,247 @@
+---
+title: "Deterioro de Cartera "
+author: "Diego Lesmes"
+date: "14 de septiembre del 2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+***
+## Objetivo
+
+Desarrollar un modelo o modelos de deterioro de cartera que permitan generar un estimador según los **días de mora** de cada factura  (A, B, C, D, E),  para esto se debe mostrar en cada categoría cuál es la **probabilidad de no pago** de las mismas; este modelo debe mostrar los mejores resultados globales y una **parametrización por sector económico** del cliente. 
+
+### Lectura del conjunto de información
+
+```{r, echo=FALSE}
+library(tidyverse)
+library(dslabs)
+library(dplyr)
+library(lubridate)
+library(readr)
+library(ggplot2)
+library("gridExtra")
+library(tidyr)
+library(e1071)
+library("caret")
+
+data <- read_delim('Cartera_Prueba.csv', delim = ";")#,fileEncoding="utf-8")#,col_types = 'dicddniinc')
+data <- data.frame(data, stringsAsFactors = TRUE)
+data$'A_FECHA' <-dmy(data$'A_FECHA')
+data$'FECHA' <-dmy(data$'FECHA')
+data$'FECHA_VTO' <-dmy(data$'FECHA_VTO')
+campos <- colnames(data)
+campos[9] <- 'Dias_mora'
+colnames(data) = campos
+data <- data %>% mutate('Categoria'= ifelse(data$ESTADO == 1,'A',
+                                     ifelse(data$ESTADO == 2,'B',
+                                     ifelse(data$ESTADO == 3,'C',
+                                     ifelse(data$ESTADO == 4,'D','E')))))
+data <- data %>%  mutate('Record' = paste(NRO_FACTURA,FECHA_VTO,sep=""))
+index <- which(is.na(data$NRO_FACTURA))
+data <- data %>% slice(-index)
+index <- which(is.na(data$FECHA_VTO))
+data <- data %>% slice(-index)
+```
+A continuación se describen las variables que contiene el conjunto de datos:
+
+* A_Fecha: Fecha de corte para cálculo de días de mora
+* ID: ID de factura en base de datos
+* Nro_Factura: Número factura
+* Fecha: Fecha emisión factura
+* Fecha_Vto: Fecha vencimiento factura
+* Saldo_a_Fecha: Saldo pendiente pago
+* Mes: Consecutivo del mes histórico 
+* Estado: Categoría de clasificación de mora (1, 2, 3, 4, 5)
+* Dias_mora: días de mora para el pago de la factura
+* Sector: Sector económico al cual pertenece el cliente
+
+## EDA
+```{r}
+summary(data)
+```
+
+Del resumen anterior podemos ver altos valores para las variables de Dias de mora y Saldo a la fecha:
+
+```{r, echo=FALSE}
+data %>% ggplot(aes(x=Dias_mora)) +
+  geom_histogram(binwidth = 500, fill='green', alpha=0.5)+
+  ggtitle('Distribución de los días de mora')
+
+hist(data$SALDO_A_FECHA,col = "light blue",
+     main = "Distribución del saldo a la fecha",
+     xlab = "Saldo a la fecha")
+```
+
+Efectivamente, se aprecia la presencia de atípicos, facturas con alrededor de 6000 dias de mora y facturas con saldos de 1.8 Billones de unidades monetarias, las siguientes gráficas nos confirman este hecho.
+
+```{r, echo=FALSE}
+G1 <- data %>% ggplot(aes(Dias_mora, Sector)) +
+  geom_boxplot()
+
+G2 <- data %>% ggplot(aes(Dias_mora, Categoria)) +
+  geom_boxplot()
+
+G4 <- data %>% ggplot(aes(SALDO_A_FECHA, Categoria)) +
+  geom_boxplot()
+
+G3 <- data %>% filter(SALDO_A_FECHA < 5e+10) %>% 
+  ggplot(aes(x=Dias_mora, y=SALDO_A_FECHA, color = Sector))+
+  geom_point()
+
+grid.arrange(G1, G2, G3, G4, 
+             ncol=2, nrow=2, widths=c(3,2), heights=c(2,3))
+
+data %>%  filter(Dias_mora > 0) %>% 
+  group_by(Categoria) %>% 
+  summarise('Minimo#Dias' = min(Dias_mora),
+            'Maximo#Dias' = max(Dias_mora),
+            'cantidad' = length(ID)) %>% 
+  mutate('%' = cantidad/nrow(data)*100)
+```
+
+Sin embargo, podemos ver de que el conjunto de datos corresponde al seguimiento de todas las facturas, debido a que el total de facturas es menor al total de registros, indicando que hay varios registros para la misma factura; como se puede aprecia a continuación:
+
+```{r, echo=FALSE}
+data %>% ggplot(aes(ID,Dias_mora,color=Sector)) +
+  geom_point()+
+  ggtitle('Registros de los días de mora por cada factura')
+for (i in colnames(data)){print(c(i,length(unique(pull(data, i)))))}
+```
+
+## Probabilidad de no pago
+
+Por lo cual definimos una tabla con las facturas vigentes, para proceder a realizar el análisis correspondiente, definiendo solamente las covariables a usar y una nueva covariable **"Pagado"** indicando si la factura tiene saldo o no.
+
+```{r, echo=FALSE}
+data <- data[order(data$FECHA_VTO, decreasing = FALSE), ]
+data <- data[order(data$NRO_FACTURA, decreasing = FALSE), ]
+data <- data %>% mutate('Fact+Reciente' = duplicated(NRO_FACTURA))
+fact <- data %>% 
+  filter(data$'Fact+Reciente' == 'FALSE') %>% 
+  select(SALDO_A_FECHA,Categoria,Sector)
+
+fact <- fact %>% mutate('Pagado' = ifelse(SALDO_A_FECHA <= 0,'Si','No'))
+fact$Categoria <- factor(fact$Categoria,
+                         levels = unique(fact$Categoria))
+fact$Sector <- factor(fact$Sector,
+                         levels = unique(fact$Sector))
+fact$Pagado <- factor(fact$Pagado,
+                         levels = unique(fact$Pagado))
+summary(fact)
+```
+
+De esta manera podemos visualizar la cantidad de facturas pagadas por Sector y por Categoría.
+
+```{r, echo=FALSE}
+catxsec <- table(fact$Categoria,fact$Sector)
+catxsecxPag <- table(fact$Categoria,fact$Sector,fact$Pagado)
+table(fact$Categoria,fact$Pagado)
+table(fact$Sector,fact$Pagado)
+```
+
+y la **probabilidad de no pago** por cada sector y cada Categoria.
+
+```{r, echo=FALSE}
+catxsec <- table(fact$Categoria,fact$Sector)
+catxsecxPag <- table(fact$Categoria,fact$Sector,fact$Pagado)
+
+round(catxsecxPag[ , ,1]/catxsec*100,2)
+
+```
+
+## Modelo predictivo
+
+Para empezar utilizaremos un modelo de Regresión logística y predecir si la factura sera pagada o no.
+
+### Partición
+
+Procedemos a hacer una partición para poder evaluar así la precisión de los modelos.
+
+```{r}
+test_index <- createDataPartition(fact$Pagado, times = 1, p = 0.5, list = FALSE)
+train_set <- fact %>% slice(-test_index)
+test_set <- fact %>% slice(test_index)
+```
+
+### Hot Encoding
+
+Decodificamos las variables categoricas
+
+```{r}
+y <- train_set$Pagado
+y_control <- test_set$Pagado
+train_HEncod <- data.frame(predict(dummyVars(" ~ Categoria+Sector", data = train_set), newdata = train_set))
+test_HEncod <- data.frame(predict(dummyVars(" ~ Categoria+Sector", data = test_set), newdata = test_set))
+
+```
+
+### Regresión Logística
+
+```{r}
+#Model_LR
+Model_LR <- glm(y ~ ., data = train_HEncod, family = "binomial")
+summary(Model_LR)
+```
+
+En primera instancia podemos ver la **parametrización por sector productivo** de los clientes, con los coeficientes o valores esperados del modelo para cada categoria de la variable Sector economico, en segunda instancia vemos que esta variable de Sector economico precisamente, no es estadisticamente significativa, por sus altos p-Value, por otra parte el **AIC** del modelo tambien es alto.
+
+### Métricas
+Realizamos la predicción basado en el modelo anterior y en la regla de decisión definida mediante la gráfica de los datos de control.
+
+```{r}
+Prediction_LR <- predict(Model_LR,test_HEncod, type = "response", na.action = na.pass)
+plot(y_control,Prediction_LR, col = "light yellow",
+     main = "Regla de Decisión adecuada")
+Prediction_LR_Fitted <- factor(ifelse(Prediction_LR < 0.2,'No','Si'))
+confusionMatrix(Prediction_LR_Fitted,y_control)
+```
+
+Podemos apreciar entonces las estadisticas de la matriz de confusión, que tenemos valores altos de Exactitud, sensitividad y especificidad.
+
+## Navie Bayes
+
+Se utilizan las particiones sin codificar para entrenar el modelo.
+
+```{r}
+fmla <- as.formula(paste("Pagado ~ ", paste("Categoria","Sector",sep = "+")))
+Model_NB <- naiveBayes(fmla,data=train_set)
+#summary(Model_NB)
+```
+
+Para este modelo, los **parámetros que definen el secor económico del cliente** son las *probabilidades de no pago* de esta variable, debido a que el modelo se basa en la probabilidad condicional determinada intrinsecamente por el conjunto de información.
+
+### Métricas
+
+Realizamos la predicción basado en las probabilidades del modelo
+
+```{r}
+Prediction_NB <- predict(object = Model_NB, newdata = test_set)
+#Metrics
+confusionMatrix(Prediction_NB, test_set$Pagado)
+#table(Prediction_NB, test_set$Pagado)
+```
+
+Sin embargo podemos apreciar en línea con las probabilidades de no Pago por sector y por Categoría, que el modelo practicamente predice que nadie realizara el pago de su factura. Esto debido principalmente al desbalance que presenta la información. Por lo cual el modelo arroja una mayor precisión, a pesar de tener una tasa de falsos positivos de cero y una tasa de Verdaderos positivos de uno.
+
+## Conclusiones
+
+El dataset inicial se trataba del seguimiento del proceso de cartera para todas las facturas, gestionadas historicamente, por lo cual fue necesario hacer un tratamiento especial para obtener los datos unicos por caso y así poder definir los predictores y adicionalmente la creacion de una variable que describiera lo que el ejercicio buscaba, **Identificar la probabilidad de no pago** de los clientes, la cual es baja para las facturas de categorías B y C, para las demás categorías practicamente indican que la gestión a realizar para el recaudo de cartera es un reto, pues las probabilidades de no pago son casi del 100%.
+
+En el **modelo de Regresión logística** fue necesario usar una regla de desición ajustada debido al desbalance presentado por las covariables, sin embargo se obtuvieron valores altos de Exactitud, la tasa de verdaderos positivos y la tasa de falsos positivos.
+
+Por su parte el **modelo de Navie Bayes** confirma que la informacion tiene un desbalance, en el sentido del bajo poder predictivo que se podia obtener de la información, por lo cual se obtiene una tasa de falsos positivos de cero, a pesar de que la Exactitud del modelo sea mayor en comparación al modelo de Regresión Logística.
+
+Se puede obtener un mayor **poder predictivo** para un conjunto de datos que contenga mas variables independientes que describan a las personas con obligaciones de pago, tales como, sexo, edad, Grado de escolaridad, estado civil, cantidad de hijos, Patrimonio, valor de la cuota, cantidad de cuotas, entre otras; de esta manera se puede realizar un estudio mas completo y descriptivo sobre la intención de pago de los deudores.
+
+Por ultimo es preciso tener en cuenta que los resultados de los diferentes modelos a utilizar, pueden mejorarse si se agregan al estudio aquellas facturas pagadas oportunamente, de esta manera se puede tener una perspectiva adecuada del comportamiento de pago de la población, **evitando el desbalance** presentado en este ejercicio.
+
+***
+
+## Código Base
+
+Se puede apreciar el código completo usado [acá](https://github.com/DLesmes/Dlesmes.github.io/blob/master/PortfolioImpairment/Cartera_Prueba.R) 
+
+***

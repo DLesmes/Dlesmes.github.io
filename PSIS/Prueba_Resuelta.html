@@ -379,8 +379,8 @@ summary {
 </div>
 
 
-<div id="segunda-parte" class="section level1">
-<h1>Segunda parte</h1>
+<div id="primera-parte" class="section level1">
+<h1>Primera parte</h1>
 <div id="setup" class="section level2">
 <h2>Setup</h2>
 <p>Se guradan variales iniciales</p>
@@ -549,7 +549,7 @@ colnames(ICFES_20192) = lapply(colnames(ICFES_20192), gsub, pattern=&#39;Â&#39;
 <pre class="r"><code>write.table(ICFES_20192, &#39;ICFES_20192.csv&#39;, row.names = F,sep = &#39;,&#39;, col.names = F)</code></pre>
 <p>Este comando es la concatenación sin espacio de las diferentes cadenas indicadas enla función paste0. Ejecuta ese cando en la terminal del sistema en este exporta el archivo final a la en la ubicación especificada de google cloud.</p>
 </div>
-<div id="segunda-parte-1" class="section level1">
+<div id="segunda-parte" class="section level1">
 <h1>Segunda parte</h1>
 <p>Es la lectura del archivo con la data del DANE. Gracias a la función read_delim explicada en la primer parte del código, se asigna al objeto “C600_2014_2019_Sede”</p>
 <pre class="r"><code>C600_2014_2019_Sede &lt;- read_delim(nombre_excel2, 
@@ -1690,28 +1690,28 @@ fit &lt;- lm(formula = PUNT_GLOBAL ~ . ,data = train_set)</code></pre>
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -213.86  -50.11   10.14   56.21  219.33 
+## -213.09  -43.08   11.58   57.44  200.14 
 ## 
 ## Coefficients:
-##                       Estimate Std. Error t value             Pr(&gt;|t|)    
-## (Intercept)            205.440     15.669  13.111 &lt; 0.0000000000000002 ***
-## FAMI_ESTRATOVIVIENDA1   11.418      8.499   1.343             0.179610    
-## FAMI_ESTRATOVIVIENDA2  -55.960      9.791  -5.715 0.000000016650515595 ***
-## FAMI_ESTRATOVIVIENDA3 -107.744     12.819  -8.405 0.000000000000000269 ***
-## FAMI_ESTRATOVIVIENDA4 -100.989     21.157  -4.773 0.000002238719141866 ***
-## FAMI_ESTRATOVIVIENDA5 -128.537     24.758  -5.192 0.000000278709496777 ***
-## FAMI_ESTRATOVIVIENDA6 -125.558     41.654  -3.014             0.002675 ** 
-## FAMI_TIENEINTERNET1     53.909     10.344   5.212 0.000000251225400347 ***
-## FAMI_TIENECOMPUTADOR1   32.928      9.575   3.439             0.000621 ***
-## SEDETE_INTERNET_1       -8.737     14.549  -0.601             0.548357    
-## SEDETE_ELECTRICIDA_1   -14.288      6.513  -2.194             0.028614 *  
+##                        Estimate Std. Error t value             Pr(&gt;|t|)    
+## (Intercept)            216.4534    15.4113  14.045 &lt; 0.0000000000000002 ***
+## FAMI_ESTRATOVIVIENDA1   -0.3655     8.9764  -0.041               0.9675    
+## FAMI_ESTRATOVIVIENDA2  -44.7360    10.3701  -4.314  0.00001854294111452 ***
+## FAMI_ESTRATOVIVIENDA3 -106.4310    13.2377  -8.040  0.00000000000000428 ***
+## FAMI_ESTRATOVIVIENDA4 -154.4711    21.3495  -7.235  0.00000000000131856 ***
+## FAMI_ESTRATOVIVIENDA5 -136.1884    27.9108  -4.879  0.00000134132120637 ***
+## FAMI_ESTRATOVIVIENDA6 -191.0965    60.6368  -3.151               0.0017 ** 
+## FAMI_TIENEINTERNET1     47.9578    10.7581   4.458  0.00000975768934233 ***
+## FAMI_TIENECOMPUTADOR1   42.9413    10.0573   4.270  0.00002251173141213 ***
+## SEDETE_INTERNET_1      -22.8568    13.9266  -1.641               0.1012    
+## SEDETE_ELECTRICIDA_1    -4.9829     6.7297  -0.740               0.4593    
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 82.12 on 652 degrees of freedom
-##   (13 observations deleted due to missingness)
-## Multiple R-squared:  0.2708, Adjusted R-squared:  0.2596 
-## F-statistic: 24.21 on 10 and 652 DF,  p-value: &lt; 0.00000000000000022</code></pre>
+## Residual standard error: 84.93 on 647 degrees of freedom
+##   (18 observations deleted due to missingness)
+## Multiple R-squared:  0.2588, Adjusted R-squared:  0.2474 
+## F-statistic:  22.6 on 10 and 647 DF,  p-value: &lt; 0.00000000000000022</code></pre>
 <p>Podemos apreciar los coeficientes o pendientes para cada una de las variables y su respectivo p_value</p>
 <pre class="r"><code>round(data.frame(slope = fit$coefficients, 
            se = summary(fit)$coefficients[,2],
@@ -1729,69 +1729,69 @@ fit &lt;- lm(formula = PUNT_GLOBAL ~ . ,data = train_set)</code></pre>
 <tbody>
 <tr class="odd">
 <td align="left">(Intercept)</td>
-<td align="right">205.44</td>
-<td align="right">15.67</td>
+<td align="right">216.45</td>
+<td align="right">15.41</td>
 <td align="right">0.00</td>
 </tr>
 <tr class="even">
 <td align="left">FAMI_ESTRATOVIVIENDA1</td>
-<td align="right">11.42</td>
-<td align="right">8.50</td>
-<td align="right">0.18</td>
+<td align="right">-0.37</td>
+<td align="right">8.98</td>
+<td align="right">0.97</td>
 </tr>
 <tr class="odd">
 <td align="left">FAMI_ESTRATOVIVIENDA2</td>
-<td align="right">-55.96</td>
-<td align="right">9.79</td>
+<td align="right">-44.74</td>
+<td align="right">10.37</td>
 <td align="right">0.00</td>
 </tr>
 <tr class="even">
 <td align="left">FAMI_ESTRATOVIVIENDA3</td>
-<td align="right">-107.74</td>
-<td align="right">12.82</td>
+<td align="right">-106.43</td>
+<td align="right">13.24</td>
 <td align="right">0.00</td>
 </tr>
 <tr class="odd">
 <td align="left">FAMI_ESTRATOVIVIENDA4</td>
-<td align="right">-100.99</td>
-<td align="right">21.16</td>
+<td align="right">-154.47</td>
+<td align="right">21.35</td>
 <td align="right">0.00</td>
 </tr>
 <tr class="even">
 <td align="left">FAMI_ESTRATOVIVIENDA5</td>
-<td align="right">-128.54</td>
-<td align="right">24.76</td>
+<td align="right">-136.19</td>
+<td align="right">27.91</td>
 <td align="right">0.00</td>
 </tr>
 <tr class="odd">
 <td align="left">FAMI_ESTRATOVIVIENDA6</td>
-<td align="right">-125.56</td>
-<td align="right">41.65</td>
+<td align="right">-191.10</td>
+<td align="right">60.64</td>
 <td align="right">0.00</td>
 </tr>
 <tr class="even">
 <td align="left">FAMI_TIENEINTERNET1</td>
-<td align="right">53.91</td>
-<td align="right">10.34</td>
+<td align="right">47.96</td>
+<td align="right">10.76</td>
 <td align="right">0.00</td>
 </tr>
 <tr class="odd">
 <td align="left">FAMI_TIENECOMPUTADOR1</td>
-<td align="right">32.93</td>
-<td align="right">9.58</td>
+<td align="right">42.94</td>
+<td align="right">10.06</td>
 <td align="right">0.00</td>
 </tr>
 <tr class="even">
 <td align="left">SEDETE_INTERNET_1</td>
-<td align="right">-8.74</td>
-<td align="right">14.55</td>
-<td align="right">0.55</td>
+<td align="right">-22.86</td>
+<td align="right">13.93</td>
+<td align="right">0.10</td>
 </tr>
 <tr class="odd">
 <td align="left">SEDETE_ELECTRICIDA_1</td>
-<td align="right">-14.29</td>
-<td align="right">6.51</td>
-<td align="right">0.03</td>
+<td align="right">-4.98</td>
+<td align="right">6.73</td>
+<td align="right">0.46</td>
 </tr>
 </tbody>
 </table>
@@ -1800,8 +1800,8 @@ fit &lt;- lm(formula = PUNT_GLOBAL ~ . ,data = train_set)</code></pre>
 #plot(y_hat, test_set$PUNT_GLOBAL)
 RMSE(test_set$PUNT_GLOBAL, y_hat)</code></pre>
 <pre><code>## Warning in pred - obs: longer object length is not a multiple of shorter object length</code></pre>
-<pre><code>## [1] 107.1254</code></pre>
-<p>como podemos ver el RMSE el modelo no tiene poder predictivo precisamente por la baja correlación preentada en las variables utilizadas.</p>
+<pre><code>## [1] 107.7484</code></pre>
+<p>como podemos ver el RMSE del modelo es muy bajo por lo cual no tiene poder predictivo precisamente por la baja correlación preentada en las variables utilizadas.</p>
 </div>
 </div>
 

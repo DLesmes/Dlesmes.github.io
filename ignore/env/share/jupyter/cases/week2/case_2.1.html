@@ -13108,7 +13108,7 @@ div#notebook {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>One of the earliest and most impactful examples of DV is a mapping of the deadly 1854 Cholera outbreak in London. The figure below shows the streets of Soho in London overlaid with Cholera cases. The original version of this figure was constructed by a local clinician John Snow treating victims of the outbreak. Snow created the figure to better understand the nature of the outbreak and identify its source. The size of the circle indicates the number of cases at a given location. From this picture, identify the source of the outbreak.</p>
-<p><img src="https://lh3.googleusercontent.com/-x-bTu24B7bs/YGjpoV7fShI/AAAAAAAA9NI/XAoL_z72Lz0nn8TxcTbATgm8mfMamBNLACLcBGAsYHQ/s0/broadStreetInverted.png?authuser=1" alt="Broad Street Map"></p>
+<p><img src="https://lh3.googleusercontent.com/-VZJVo7TMyXY/YGjpp1jkHLI/AAAAAAAA9NM/BuVyeCX0DyA14kgcTNd4brLWkuHdYUtyACK8BGAsYHg/s0/broadStreetInverted.png?authuser=1" alt="Broad Street Map"></p>
 
 </div>
 </div>
@@ -13338,7 +13338,7 @@ div#notebook {
 <h3 id="Histograms-for-biomarkers">Histograms for biomarkers<a class="anchor-link" href="#Histograms-for-biomarkers">&#182;</a></h3><p>Which numerical summaries are useful to get a general sense of the data distribution, it is often very useful to also obtain a graphical representation of the data distribution to aid in presentation and understanding.</p>
 <p>One simple and useful visual method to see the distribution at a more granular level is to use a <a href="https://www.mathsisfun.com/data/histograms.html">histogram</a>. In a <strong>histogram</strong>, the x-axis is broken in different <strong>bins</strong> of values for the variable of interest. Each data point is placed into a bin based on the value of its variable of interest. The y-axis then corresponds to the number of data points in each bin on the x-axis. Thus, histograms show which data values of a particular variable have a high density of points. Larger bars in a histogram indicate a higher frequency of oberservations in that corresponding bin.</p>
 <p>Below, we have constructed three histograms, one for each biomarker:</p>
-<p><img src="https://lh3.googleusercontent.com/-6QKGQeANTcw/YGjtzx4d2AI/AAAAAAAA9Qs/9vIrtpuuBoomP1U0HRaJ8vjoK9XJ32C8wCLcBGAsYHQ/s0/biomarkerHistsUpdated.png?authuser=1" alt="Biomarker Histograms"></p>
+<p><img src="https://lh3.googleusercontent.com/-YWlM6sv_t24/YGjt0_qnJVI/AAAAAAAA9Qw/07s_AxgqAlccKLN6zbMx0lCh-Riy-C2bQCK8BGAsYHg/s0/biomarkerHistsUpdated.png?authuser=1" alt="Biomarker Histograms"></p>
 
 </div>
 </div>
@@ -13363,7 +13363,7 @@ div#notebook {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="1D-scatterplot:-An-alternative-to-the-histogram-(10-min)">1D scatterplot: An alternative to the histogram (10 min)<a class="anchor-link" href="#1D-scatterplot:-An-alternative-to-the-histogram-(10-min)">&#182;</a></h2><p>The <a href="http://www6.uniovi.es/hypvis/vised/VisTech/Techniques/s1dcscatterplot.html">1D scatterplot</a> is an alternative to the histogram, that can sometimes prove more informative when there are clusters of points. In a 1D scatterplot, the y-axis represents the quantity of interest (here, the values of the biomarkers), and the observed points are placed such that their y-coordinate equals their biomarker value and they are clustered as tightly as possible along the x-axis without allowing them to overlap. Thus, clusters of points will be displaced horizontally, causing the plot to "bulge" in areas where there are many points with similar biomarker values. Below we show a 1D scatterplot for the logarithmic transformations of each of the biomarkers:</p>
-<p><img src="https://lh3.googleusercontent.com/-tw2GECPfIh8/YGjvNuZXkxI/AAAAAAAA9RI/91_Z0e9FVUEfM0cyT3xVuich8WKmT6eJwCLcBGAsYHQ/s0/biomarker1DScatter.png?authuser=1" alt="Biomarker 1D Scatterplots"></p>
+<p><img src="https://lh3.googleusercontent.com/-CORkZfY5wvA/YGjvOScX7tI/AAAAAAAA9RM/CdPplqDeVToxFgQkQMkDyy7oCmPlSnl5QCK8BGAsYHg/s0/biomarker1DScatter.png?authuser=1" alt="Biomarker 1D Scatterplots"></p>
 <p>(The logarithmic transform is purely for visual purposes; it allows us to "break up" the clusters of points near zero and show them more precisely. In later cases, you will learn about the analytical power of using the logarithmic transform on your data.)</p>
 
 </div>
@@ -13373,7 +13373,7 @@ div#notebook {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="Using-color-as-a-tool-to-differentiate-categories">Using color as a tool to differentiate categories<a class="anchor-link" href="#Using-color-as-a-tool-to-differentiate-categories">&#182;</a></h3><p>The above figure provides a better sense of the distribution of values of each biomarker. We see that GFAP indeed has a large cluster at zero while pNFH has many small points but only one zero. However, our goal is to see if these biomarkers might be predictive of recovery status. To visualize this better, we can color each of the points according to their recovery status (Y if they recovered after six months, N if not):</p>
-<p><img src="https://lh3.googleusercontent.com/-laqxP3gJ6-E/YGjqVUz1DOI/AAAAAAAA9Nw/C1_6ToyGYNcjbUBIqNQ7BUh_4242Dk7JgCLcBGAsYHQ/s0/biomarker1DScatterLabeled.png?authuser=1" alt="Biomarker 1D Scatterplots"></p>
+<p><img src="https://lh3.googleusercontent.com/-hfh9GHN7iXU/YGjqWZ055bI/AAAAAAAA9N0/chBsDujj2DAV9be5BJ_W0XXsk_FUkBYmACK8BGAsYHg/s0/biomarker1DScatterLabeled.png?authuser=1" alt="Biomarker 1D Scatterplots"></p>
 
 </div>
 </div>
@@ -13405,7 +13405,7 @@ div#notebook {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>However, we still have not used one last piece of information: gender. Below we show a <a href="https://www.data-to-viz.com/graph/parallel.html">parallel coordinates</a> plot split by sex. Each line represents a single subject and the y-axis represents its different biomarker values. The plot suggests that males with large S100B and high GFAP are likely to recover (recovery is coded red), whereas females  with low GFAP are likely to recover. While this plot is not a model and we have not attempted to calculate the misclassification rate, we can see that there is some signal. Let's try to explore this further.</p>
-<p><img src="https://lh3.googleusercontent.com/-4tQgPY6bFjk/YGjqkNCzU0I/AAAAAAAA9N8/VHEUT7DWAeY6dJsAtvQvyt1WpjJ9pghnACLcBGAsYHQ/s0/biomarkerParCoordUpdated.png?authuser=1" alt="Biomarker 1D Scatterplots"></p>
+<p><img src="https://lh3.googleusercontent.com/-i4B5RvWQDHg/YGjqlQ75iAI/AAAAAAAA9OE/voLZ4f8TmXQRZEf3Eb0v6USZjsiX6PErQCK8BGAsYHg/s0/biomarkerParCoordUpdated.png?authuser=1" alt="Biomarker 1D Scatterplots"></p>
 
 </div>
 </div>
@@ -13415,9 +13415,9 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="2D-scatterplots-(20-min)">2D scatterplots (20 min)<a class="anchor-link" href="#2D-scatterplots-(20-min)">&#182;</a></h2><p>The next set of plots we'll look at will be scatterplots labeled by recovery status. However, instead of 1D scatterplots, we'll now look at <a href="https://www.data-to-viz.com/graph/scatter.html">2D scatterplots</a>. 2D scatterplots plot data along two axes according to the data points' values for the attributes represented by those axes; hence, they make it incredibly clear if there are any relationships between the variables on the axes.</p>
 <p>To help visually identify which regions appear to be associated with recovery, we lay down a fine grid of points in the background and color them according to whether the nearest point corresponding to an observed patient successfully recovered or not (i.e. for each point on the grid we color it red if the nearest observed patient recovered and black otherwise). The following scatterplot of S100B vs. GFAP suggests that S100B holds little additional value over GFAP in terms of predictive accuracy:</p>
-<p><img src="https://lh3.googleusercontent.com/-SUThfWVbsD4/YGjqzhTiKLI/AAAAAAAA9OQ/P6kQVoox9BkVSmIuTz07PbhzdDScM2L8wCLcBGAsYHQ/s0/biomarkerScatterKNN_GFAP_S100B.png?authuser=1" width="1000"></p>
+<p><img src="https://lh3.googleusercontent.com/-PhJu1r8Xn4I/YGjq0hEhaUI/AAAAAAAA9OY/RTeG1gVdKSAuHiZtuJGbr_KDaxkZp1T0QCK8BGAsYHg/s0/biomarkerScatterKNN_GFAP_S100B.png?authuser=1" width="1000"></p>
 <p>We also look at these scatterplots split by gender:</p>
-<p><img src="https://lh3.googleusercontent.com/-IUc9FjA5Nrg/YGjq3JfzKQI/AAAAAAAA9Ok/vaVDmud7ZmM0cFC68GvXcesBO6QAB74nwCLcBGAsYHQ/s0/biomarkerScatterKNN_GFAP_pNFH_Sex.png?authuser=1" width="1000"></p>
+<p><img src="https://lh3.googleusercontent.com/-ocj3dF6giUo/YGjq4JkDRFI/AAAAAAAA9Oo/ip7p7ZaUZ9kFR9itCPh9yixs0g0LKDdXwCK8BGAsYHg/s0/biomarkerScatterKNN_GFAP_pNFH_Sex.png?authuser=1" width="1000"></p>
 
 </div>
 </div>
@@ -13441,10 +13441,10 @@ div#notebook {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Here are the 2D scatterplots for GFAP vs pNFH and S100B vs pNFH:</p>
-<p><img src="https://lh3.googleusercontent.com/-lIzsNWn5SAI/YGjrRWZWVsI/AAAAAAAA9O4/_wNKNsK9tbUDbLY0Zkj4CPmCFUpEhs8TgCLcBGAsYHQ/s0/biomarkerScatterKNN_GFAP_pNFH.png?authuser=1" width="1000"></p>
-<p><img src="https://lh3.googleusercontent.com/-iMLSxu734bs/YGjrUDYDtEI/AAAAAAAA9PE/uP4AoBSLpGcLZECTgTorRSkXf_gZrPM_ACLcBGAsYHQ/s0/biomarkerScatterKNN_GFAP_pNFH_Sex.png?authuser=1" width="1000"></p>
-<p><img src="https://lh3.googleusercontent.com/-m5u6tsjmD0w/YGjrjTPt9HI/AAAAAAAA9PU/KAl1tGjSGUoK0mdpnpSP42PzvJECZotjwCLcBGAsYHQ/s0/biomarkerScatterKNN_S100B_pNFH.png?authuser=1" width="1000"></p>
-<p><img src="https://lh3.googleusercontent.com/-m6IXoKf-LdU/YGjrt07GA1I/AAAAAAAA9Pk/4RMlWf6GhhQBo7bMXjJzK011Po4C15TwQCLcBGAsYHQ/s0/biomarkerScatterKNN_S100B_pNFH_Sex.png?authuser=1" width="1000"></p>
+<p><img src="https://lh3.googleusercontent.com/-5SUXsMrFamU/YGjrSQdCe6I/AAAAAAAA9O8/0U2mSTavV4Iur13YqgzrqeGfjiDzP5xoQCK8BGAsYHg/s0/biomarkerScatterKNN_GFAP_pNFH.png?authuser=1" width="1000"></p>
+<p><img src="https://lh3.googleusercontent.com/-ilwzremx310/YGjrVP4E8kI/AAAAAAAA9PI/8XPzdbqUUcYjC8vEVZJkK0-5SDT37o6swCK8BGAsYHg/s0/biomarkerScatterKNN_GFAP_pNFH_Sex.png?authuser=1" width="1000"></p>
+<p><img src="https://lh3.googleusercontent.com/-wfcro5JBqNA/YGjrkPnyagI/AAAAAAAA9Pc/ZMvfpDS5axIIIRNpDTb2G2vN0JiSUBA3gCK8BGAsYHg/s0/biomarkerScatterKNN_S100B_pNFH.png?authuser=1" width="1000"></p>
+<p><img src="https://lh3.googleusercontent.com/-0dqDWNV5roU/YGjru-sXfZI/AAAAAAAA9Po/kh0hqo5_1pYUytPhWW2eMh6qKKuLv8rugCK8BGAsYHg/s0/biomarkerScatterKNN_S100B_pNFH_Sex.png?authuser=1" width="1000"></p>
 
 </div>
 </div>
@@ -13496,9 +13496,9 @@ div#notebook {
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Extending-our-SNAP-test-(5-min)">Extending our SNAP test (5 min)<a class="anchor-link" href="#Extending-our-SNAP-test-(5-min)">&#182;</a></h2><p>Upon further consideration of standard treatment protocols, your researchers have decided that critical treatment decisions should be made within 72 hours post-injury. Consequently, they are interested in whether or not taking three measurements, one per day, might provide better predictions of six-month recovery. Because GFAP was our most promising biomarker at baseline, let's first make a parallel-coordinates plot of GFAP at regular intervals over the first 72 hours (days 0, 1, and 2). To make the plot easier to parse visually, we split it by recovery status:</p>
-<p><img src="https://lh3.googleusercontent.com/-o2cyvFMUuTg/YGjsHs--b6I/AAAAAAAA9P8/IAxFzaqmQRsfUoz7VX7Wb1QqplCCanahQCLcBGAsYHQ/s0/biomarkerGFAP72Hours.png?authuser=1" width="1000"></p>
+<p><img src="https://lh3.googleusercontent.com/-dWQ8O1Ag9jQ/YGjsIpLWySI/AAAAAAAA9QA/bRLlaFyTnCsc55a61BlgVgPmk88khH70ACK8BGAsYHg/s0/biomarkerGFAP72Hours.png?authuser=1" width="1000"></p>
 <p><strong>The preceding plot suggests that the GFAP levels tend to be more volatile among patients that did not recover vs. those that did, and that their peaks are higher. Below we show a 1D scatterplot of the maximum (log) GFAP over 72 hours colored by recovery status. We see that we can almost perfectly separate the data using this quantity via a classification threshold, $c \approx 0.5$, except for three points:</strong></p>
-<p><img src="https://lh3.googleusercontent.com/-iD1BLYLmzD0/YGjsKjLimtI/AAAAAAAA9QI/U0ivZtqcTfUt42efht2h-YV23xqNrnBiwCLcBGAsYHQ/s0/biomarkerGFAP72HoursMax.png?authuser=1" width="1000"></p>
+<p><img src="https://lh3.googleusercontent.com/-qjFUfgs-u8A/YGjsLoR0wwI/AAAAAAAA9QM/aCsB-NxwUUUhbkgROF0iAqtYQJIspEwaQCK8BGAsYHg/s0/biomarkerGFAP72HoursMax.png?authuser=1" width="1000"></p>
 
 </div>
 </div>

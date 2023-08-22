@@ -1,1 +1,68 @@
+/* Header Styles */
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px;
+}
+
+/* Profile Photo Styles */
+img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid #fff; /* Optional white border around the photo */
+}
+
+/* Contact Information Styles */
+.contact-info {
+  color: #fff;
+  text-align: right;
+}
+
+.contact-info h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.contact-info p {
+  margin: 5px 0;
+  font-size: 16px;
+  opacity: 0.7;
+}
+
+.contact-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.contact-info li {
+  margin: 5px 0;
+}
+
+.contact-info a {
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.8;
+  transition: opacity 0.3s;
+}
+
+.contact-info a:hover {
+  opacity: 1;
+}
+
+body {
+  background-color: #111; /* Dark background color */
+  color: #fff; /* Text color */
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Add these styles for each section */
+section {
+  padding: 40px;
+  background-color: #1c1c1c; /* Slightly lighter background color */
+}
 

@@ -157,7 +157,7 @@ section {
 
 /* Alternate Background Colors for Even and Odd Items */
 .experience-item:nth-child(even) {
-  background-color: #A1A9B9;
+  background-color: #444;
 }
 
 /* CTA Styles */
@@ -181,4 +181,39 @@ section {
 
 .cta-button:hover {
   background-color: #e65a00;
+}
+
+
+/* Blog Posts Gallery Styles */
+.blog-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.blog-post {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.blog-post a {
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.blog-post a:hover {
+  color: #ff6600;
+}
+
+.blog-post h3 {
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+.blog-post p {
+  margin: 5px 0;
+  font-size: 14px;
+  opacity: 0.8;
 }

@@ -75,11 +75,11 @@
 
   // Define the data for your skills
   var data = {
-    labels: ["Python", "GCP", "SQL", "R", "git", "FastAPI"],
+    labels: ["Python", "SQL", "git", "FastAPI", "GCP", "R"],
     datasets: [
       {
         label: "Skill Level",
-        data: [95, 80, 95, 60, 95, 70], // Replace with your skill levels
+        data: [95, 95, 95, 80, 70, 60], // Replace with your skill levels
         backgroundColor: "rgba(75, 192, 192, 0.2)", // Color of the bars
         borderColor: "rgba(75, 192, 192, 1)", // Border color of the bars
         borderWidth: 1,
@@ -92,6 +92,7 @@
     type: "bar",
     data: data,
     options: {
+      indexAxis: 'y',
       scales: {
         x: {
           beginAtZero: true,

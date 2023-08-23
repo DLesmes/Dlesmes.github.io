@@ -10,7 +10,8 @@
     <img src="images/lmkdn.png" alt="Diego Lesmes">
     <div class="contact-info">
       <h1>Diego Lesmes</h1>
-      <p>| Data Scientist | ML Engineer | AI Developer|</p>
+      <h4>| Data Scientist | ML Engineer | AI Developer |</h4>
+      <p>As a Data Scientist and Industrial Engineer, I offer a comprehensive skill set with a deep understanding of machine learning and data science fundamentals. My experience working on cross-functional teams has enhanced my collaboration and communication skills, enabling me to deliver successful AI projects. I have a passion for continuous learning and staying updated with the latest advancements in the field, allowing me to adapt and embrace new technologies quickly. Furthermore, my problem-solving mindset and ability to approach complex challenges with creativity and critical thinking contribute to my success in driving impactful results. With hands-on experience deploying LLM integrations in production environments and a track record of delivering end-to-end projects, I bring practical expertise to an AI tech company.</p>
       <ul>
         <li><a href="https://www.linkedin.com/in/diegolesmes-lnkdn/">LinkedIn</a></li>
         <li><a href="https://dlesmes.github.io/">GitHub</a></li>
@@ -18,9 +19,18 @@
     </div>
   </div>
   </header>
+  <nav class="portfolio-nav">
+    <ul>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#timeline">Studies</a></li>
+      <li><a href="#experiences">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#blog">Blog Posts</a></li>
+    </ul>
+  </nav>  
   <section id="skills">
     <h2>Skills</h2>
-    <canvas id="skillsChart" width="400" height="50"></canvas>
+    <canvas id="skillsChart" width="400" height="200"></canvas>
   </section>
   <section id="timeline">
     <h2>Academic Studies</h2>
@@ -43,7 +53,7 @@
     </div>
   </section>
   <section id="experiences">
-    <h2>Roles and Experiences</h2>
+    <h2>Experience</h2>
     <div class="experience-container">
       <div class="experience-item">
         <h3>Data Scientist</h3>
@@ -54,19 +64,102 @@
           <!-- Add more responsibilities as needed -->
         </ul>
       </div>
+      <div class="experience-item">
+        <h3>Data Scientist</h3>
+        <p>AMERICAS BPS</p>
+        <p>Nov 2021 - Aug 2021</p>
+        <ul>
+          <li>Data and feature engineering, Cleaning, Pre-processing,Exploratory Data Analysis and Dashboards Designs</li>
+          <li>Cloud Extract, transform and load process </li>
+          <li>Perform problem modelling through Forecast, Regression, Classification and clustering Machine Learning algorithms</li>
+          <li>Hipperparameter optimization and selection optimums models</li>
+          <li>Deploy code of performed models</li>
+          <li>Develop of audio transcription, speech analytics and customer value report</li>
+        </ul>
+      </div>
+      <div class="experience-item">
+        <h3>Energy Market Analyst</h3>
+        <p>COSENIT S.A.</p>
+        <p>Apr 2018 - Jul 2020</p>
+        <ul>
+          <li>Regulatory analysis of the Natural Gas sector in Colombia</li>
+          <li>Monthly reports of energy consumption of different clients for the billing audit and provisions for Natural Gas costs</li>
+          <li>Support in preparing the meeting presentation for the electricity and natural gas industry, generic monthly report and daily report market</li>
+          <li>Development of a market study of thermal coal in the interior of the country, for the consumption of clients located in the departments of Valle, Cundinamarca and Boyacá</li>
+          <li>Identify and compare the monthly value of the billing adjustments of the different customers for the process of claiming accumulated adjustments for each marketer</li>
+          <li>Standardize the billing audit process for customers with electricity and Natural Gas consumption</li>
+          <li>Automation of the process of generating the daily report on Energy Markets in Colombia and the Natural Gas Nomination process</li>
+        </ul>
+      </div>
       <!-- Repeat this structure for each experience -->
     </div>
   </section>
   <section id="projects">
-    <!-- Personal Projects Section -->
-  </section>
+    <h2>Personal Projects</h2>
+    <div class="cta-container">
+      <p>Check out my projects to see more of my work!</p>
+      <a href="https://github.com/DLesmes" class="cta-button">View Projects</a>
+    </div>
+  </section>  
   <section id="blog">
-    <!-- Blog Post Section -->
+    <h2>Blog Posts</h2>
+    <div class="blog-gallery">
+      <div class="blog-post">
+        <a href="blogs/template.html">
+          <img src="images/blog-post-1.jpg" alt="Blog Post 1">
+          <h3>Blog Post Title 1</h3>
+        </a>
+        <p>Summary of Blog Post 1</p>
+      </div>
+      <!-- Add individual blog posts here -->
+      <div class="blog-post">
+        <a href="blogs/template.html">
+          <img src="images/blog-post-1.jpg" alt="Blog Post 1">
+          <h3>Blog Post Title 1</h3>
+        </a>
+        <p>Summary of Blog Post 1</p>
+      </div>
+      <!-- Add individual blog posts here -->
+      <div class="blog-post">
+        <a href="blogs/template.html">
+          <img src="images/blog-post-1.jpg" alt="Blog Post 1">
+          <h3>Blog Post Title 1</h3>
+        </a>
+        <p>Summary of Blog Post 1</p>
+      </div>
+      <!-- Repeat this structure for each blog post -->
+    </div>
   </section>
   <footer>
-    <!-- Footer Section -->
+    <div class="footer-content">
+      <div class="contact">
+        <h3>Contact Information</h3>
+        <p>Email: dalejandro22202@gmail.com</p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/diegolesmes-lnkdn/" target="_blank">Diego Lesmes</a></p>
+      </div>
+      <div class="social">
+        <h3>Connect with Me</h3>
+        <a href="https://twitter.com/Dalejmez" target="_blank">Twitter</a>
+        <a href="https://github.com/DLesmes" target="_blank">GitHub</a>
+      </div>
+    </div>
+    <p class="copyright">© 2023 Diego Lesmes. All rights reserved.</p>
   </footer>
+  
 </body>
+<script>
+  const navLinks = document.querySelectorAll('.portfolio-nav a');
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', event => {
+      event.preventDefault();
+      const targetId = link.getAttribute('href');
+      const targetSection = document.querySelector(targetId);
+      targetSection.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+
 </html>
 
 <script>
@@ -75,12 +168,12 @@
 
   // Define the data for your skills
   var data = {
-    labels: ["Python", "GCP", "SQL", "R", "git", "FastAPI"],
+    labels: ["Python", "SQL", "git", "FastAPI", "GCP", "R"],
     datasets: [
       {
         label: "Skill Level",
-        data: [95, 80, 95, 60, 95, 70], // Replace with your skill levels
-        backgroundColor: "rgba(75, 192, 192, 0.2)", // Color of the bars
+        data: [95, 95, 95, 80, 70, 60], // Replace with your skill levels
+        backgroundColor: "rgba(54, 162, 235, 0.2)", // Color of the bars
         borderColor: "rgba(75, 192, 192, 1)", // Border color of the bars
         borderWidth: 1,
       },
@@ -92,6 +185,7 @@
     type: "bar",
     data: data,
     options: {
+      indexAxis: 'y',
       scales: {
         x: {
           beginAtZero: true,

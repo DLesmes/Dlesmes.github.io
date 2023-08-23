@@ -12,7 +12,7 @@ img {
   height: 150px;
   border-radius: 50%;
   object-fit: cover;
-  border: 5px solid #fff; /* Optional white border around the photo */
+  border: 2px solid #fff; /* Optional white border around the photo */
 }
 
 /* Contact Information Styles */
@@ -28,7 +28,9 @@ img {
 
 .contact-info p {
   margin: 5px 0;
+  margin-left: 80px;
   font-size: 16px;
+  text-align: justify;
   opacity: 0.7;
 }
 
@@ -64,6 +66,34 @@ body {
 section {
   padding: 40px;
   background-color: #1c1c1c; /* Slightly lighter background color */
+}
+
+/* Navigation Index Styles */
+.portfolio-nav {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.portfolio-nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.portfolio-nav li {
+  display: inline-block;
+  margin: 0 15px;
+}
+
+.portfolio-nav a {
+  text-decoration: none;
+  color: #3D85C6;
+  font-weight: bold;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+.portfolio-nav a:hover {
+  opacity: 1;
 }
 
 /* Timeline Styles */
@@ -129,7 +159,7 @@ section {
 }
 
 .experience-item {
-  background-color: #465676;
+  background-color: #194D70;
   padding: 20px;
   border-radius: 5px;
 }
@@ -157,6 +187,108 @@ section {
 
 /* Alternate Background Colors for Even and Odd Items */
 .experience-item:nth-child(even) {
-  background-color: #A1A9B9;
+  background-color: #444;
 }
 
+/* CTA Styles */
+.cta-container {
+  background-color: #444;
+  color: #fff;
+  text-align: center;
+  padding: 30px;
+  border-radius: 5px;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #073763;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+  background-color: #e65a00;
+}
+
+
+/* Blog Posts Gallery Styles */
+.blog-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.blog-post {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.blog-post a {
+  color: #333;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.blog-post a:hover {
+  color: #ff6600;
+}
+
+.blog-post h3 {
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+.blog-post p {
+  margin: 5px 0;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* Footer Styles */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 40px 0;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Update the color for LinkedIn link */
+.contact a[href^="https://www.linkedin.com/in/diegolesmes-lnkdn/"] {
+  color: #3D85C6; /* Use the same color as the GitHub link */
+}
+
+.contact, .social {
+  flex: 1;
+}
+
+.footer-content h3 {
+  margin: 0 0 10px;
+}
+
+.social a {
+  display: block;
+  margin-bottom: 5px;
+  text-decoration: none;
+  color: #fff;
+  opacity: 0.8;
+}
+
+.social a:hover {
+  opacity: 1;
+}
+
+.copyright {
+  text-align: center;
+  margin-top: 20px;
+  opacity: 0.6;
+}

@@ -129,7 +129,7 @@ section {
 }
 
 .experience-item {
-  background-color: #f9f9f9;
+  background-color: #465676;
   padding: 20px;
   border-radius: 5px;
 }
@@ -157,6 +157,6 @@ section {
 
 /* Alternate Background Colors for Even and Odd Items */
 .experience-item:nth-child(even) {
-  background-color: #e6e6e6;
+  background-color: #A1A9B9;
 }
 

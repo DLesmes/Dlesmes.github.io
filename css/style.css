@@ -121,3 +121,42 @@ section {
   left: auto;
   right: 0;
 }
+
+/* Experiences Styles */
+.experience-container {
+  display: grid;
+  gap: 40px;
+}
+
+.experience-item {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.experience-item h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.experience-item p {
+  margin: 5px 0;
+  opacity: 0.8;
+  font-size: 14px;
+}
+
+.experience-item ul {
+  list-style: disc;
+  margin: 10px 0 0 20px;
+  padding: 0;
+}
+
+.experience-item li {
+  margin: 5px 0;
+}
+
+/* Alternate Background Colors for Even and Odd Items */
+.experience-item:nth-child(even) {
+  background-color: #e6e6e6;
+}
+

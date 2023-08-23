@@ -160,3 +160,25 @@ section {
   background-color: #A1A9B9;
 }
 
+/* CTA Styles */
+.cta-container {
+  background-color: #444;
+  color: #fff;
+  text-align: center;
+  padding: 30px;
+  border-radius: 5px;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #073763;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+  background-color: #e65a00;
+}

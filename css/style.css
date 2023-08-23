@@ -245,3 +245,48 @@ section {
   font-size: 14px;
   opacity: 0.8;
 }
+
+/* Footer Styles */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 40px 0;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Update the color for LinkedIn link */
+.contact a[href^="https://www.linkedin.com/in/diegolesmes-lnkdn/"] {
+  color: #3D85C6; /* Use the same color as the GitHub link */
+}
+
+.contact, .social {
+  flex: 1;
+}
+
+.footer-content h3 {
+  margin: 0 0 10px;
+}
+
+.social a {
+  display: block;
+  margin-bottom: 5px;
+  text-decoration: none;
+  color: #fff;
+  opacity: 0.8;
+}
+
+.social a:hover {
+  opacity: 1;
+}
+
+.copyright {
+  text-align: center;
+  margin-top: 20px;
+  opacity: 0.6;
+}

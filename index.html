@@ -19,6 +19,15 @@
     </div>
   </div>
   </header>
+  <nav class="portfolio-nav">
+    <ul>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#timeline">Studies</a></li>
+      <li><a href="#experiences">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#blog">Blog Posts</a></li>
+    </ul>
+  </nav>  
   <section id="skills">
     <h2>Skills</h2>
     <canvas id="skillsChart" width="400" height="200"></canvas>
@@ -126,6 +135,19 @@
     <!-- Footer Section -->
   </footer>
 </body>
+<script>
+  const navLinks = document.querySelectorAll('.portfolio-nav a');
+
+  navLinks.forEach(link => {
+    link.addEventListener('click', event => {
+      event.preventDefault();
+      const targetId = link.getAttribute('href');
+      const targetSection = document.querySelector(targetId);
+      targetSection.scrollIntoView({ behavior: 'smooth' });
+    });
+  });
+</script>
+
 </html>
 
 <script>

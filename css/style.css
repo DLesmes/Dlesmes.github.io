@@ -66,6 +66,34 @@ section {
   background-color: #1c1c1c; /* Slightly lighter background color */
 }
 
+/* Navigation Index Styles */
+.portfolio-nav {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.portfolio-nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.portfolio-nav li {
+  display: inline-block;
+  margin: 0 15px;
+}
+
+.portfolio-nav a {
+  text-decoration: none;
+  color: #3D85C6;
+  font-weight: bold;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+.portfolio-nav a:hover {
+  opacity: 1;
+}
+
 /* Timeline Styles */
 .timeline-container {
   position: relative;

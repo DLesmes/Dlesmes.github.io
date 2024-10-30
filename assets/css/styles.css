@@ -1,0 +1,142 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    margin: 0;
+}
+
+.section-title {
+    text-align: center;
+    margin: 40px 0;
+    font-size: 2em;
+    color: white;
+    padding: 20px;
+    background-color: #b31000;
+}
+
+.entry {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.entry:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.entry img {
+    width: 50%;
+    height: auto;
+}
+
+.entry-text {
+    width: 50%;
+    padding: 40px;
+    background-color: white;
+    color: #333;
+}
+
+.blogs .entry-text {
+    background-color: #cc1200;
+    color: white;
+}
+
+.projects .entry-text {
+    background-color: #b31000;
+    color: white;
+}
+
+.entry-text h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.entry-text p {
+    font-size: 1em;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.entry-text a {
+    text-decoration: none;
+    color: #ffff33;
+    font-weight: bold;
+}
+
+/* Color Palette for Text Containers */
+.blogs .entry:nth-child(1) .entry-text {
+    background-color: #cc1200;
+}
+
+.blogs .entry:nth-child(2) .entry-text {
+    background-color: #b31000;
+}
+
+.blogs .entry:nth-child(3) .entry-text {
+    background-color: #990e00;
+}
+
+.projects .entry:nth-child(1) .entry-text {
+    background-color: #800b00;
+}
+
+.projects .entry:nth-child(2) .entry-text {
+    background-color: #660900;
+}
+
+.projects .entry:nth-child(3) .entry-text {
+    background-color: #4d0700;
+}
+
+/* Content Links Section */
+.content-links {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.content-links a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+.content-links a:hover {
+    color: #cc1200;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .entry {
+        flex-direction: column;
+    }
+
+    .entry img,
+    .entry-text {
+        width: 100%;
+    }
+
+    .entry img {
+        margin-bottom: 20px;
+    }
+
+    .entry-text {
+        padding: 20px;
+    }
+}

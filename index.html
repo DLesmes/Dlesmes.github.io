@@ -27,11 +27,14 @@
             margin: 0;
         }
 
+        /* Section title colors */
         .section-title {
             text-align: center;
             margin: 40px 0;
             font-size: 2em;
-            color: #333;
+            color: white;
+            padding: 20px;
+            background-color: #cc1200;
         }
 
         .entry {
@@ -58,6 +61,17 @@
             color: #333;
         }
 
+        /* Blog text container colors */
+        .blogs .entry-text {
+            background-color: #cc1200;
+            color: white;
+        }
+
+        .projects .entry-text {
+            background-color: #b31000;
+            color: white;
+        }
+
         .entry-text h2 {
             font-size: 1.5em;
             margin-bottom: 10px;
@@ -71,41 +85,36 @@
 
         .entry-text a {
             text-decoration: none;
-            color: #333;
+            color: #ffff33;
             font-weight: bold;
         }
 
-        /* Color Palette */
-        .color-1 {
-            background-color: #ff3333;
-            color: white;
+        /* Color Palette for Text Containers */
+        .blogs .entry:nth-child(1) .entry-text {
+            background-color: #cc1200; /* Dark Red */
         }
 
-        .color-2 {
-            background-color: #ff6633;
-            color: white;
+        .blogs .entry:nth-child(2) .entry-text {
+            background-color: #b31000; /* Slightly lighter */
         }
 
-        .color-3 {
-            background-color: #ff9933;
-            color: white;
+        .blogs .entry:nth-child(3) .entry-text {
+            background-color: #990e00; /* Lighter red */
         }
 
-        .color-4 {
-            background-color: #ffcc33;
-            color: white;
+        .projects .entry:nth-child(1) .entry-text {
+            background-color: #800b00; /* Darker brownish red */
         }
 
-        .color-5 {
-            background-color: #ffff33;
-            color: black;
+        .projects .entry:nth-child(2) .entry-text {
+            background-color: #660900; /* Darker red */
         }
 
-        .color-6 {
-            background-color: #ccff33;
-            color: black;
+        .projects .entry:nth-child(3) .entry-text {
+            background-color: #4d0700; /* Even darker */
         }
 
+        /* Content Links Section */
         .content-links {
             background-color: #333;
             color: white;
@@ -121,7 +130,7 @@
         }
 
         .content-links a:hover {
-            color: #ff6633;
+            color: #cc1200;
         }
 
         /* Responsive Design */
@@ -153,43 +162,47 @@
     </header>
 
     <!-- Blogs Section -->
-    <section id="blogs" class="color-1">
-        <h2 class="section-title">Blogs</h2>
-
+    <section id="blogs" class="blogs">
+        <h2 class="section-title" style="background-color: #b31000;">Blogs</h2>
+        
         <div class="entry">
             <img src="https://via.placeholder.com/1200x800" alt="Blog Image 1">
             <div class="entry-text">
                 <h2>Blog Post Title 1</h2>
                 <p>This is a short summary of the blog post. It gives the readers a preview of what the post is about.</p>
-                <a href="#" style="color: #ffff33;">Read More</a>
+                <a href="#">Read More</a>
             </div>
+        </div>
+
         <div class="entry">
             <img src="https://via.placeholder.com/1200x800" alt="Blog Image 2">
             <div class="entry-text">
                 <h2>Blog Post Title 2</h2>
                 <p>This is a short summary of the blog post. It gives the readers a preview of what the post is about.</p>
-                <a href="#" style="color: #ffcc33;">Read More</a>
+                <a href="#">Read More</a>
             </div>
+        </div>
+
         <div class="entry">
             <img src="https://via.placeholder.com/1200x800" alt="Blog Image 3">
             <div class="entry-text">
                 <h2>Blog Post Title 3</h2>
                 <p>This is a short summary of the blog post. It gives the readers a preview of what the post is about.</p>
-                <a href="#" style="color: #ccff33;">Read More</a>
+                <a href="#">Read More</a>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="color-2">
-        <h2 class="section-title">Projects</h2>
+    <section id="projects" class="projects">
+        <h2 class="section-title" style="background-color: #b31000;">Projects</h2>
 
         <div class="entry">
             <img src="https://via.placeholder.com/1200x800" alt="Project Image 1">
             <div class="entry-text">
                 <h2>Project Title 1</h2>
                 <p>This is a brief description of the project. It explains what the project is about and the technologies used.</p>
-                <a href="#" style="color: #ffff33;">View Project</a>
+                <a href="#">View Project</a>
             </div>
         </div>
 
@@ -198,7 +211,7 @@
             <div class="entry-text">
                 <h2>Project Title 2</h2>
                 <p>This is a brief description of the project. It explains what the project is about and the technologies used.</p>
-                <a href="#" style="color: #ffcc33;">View Project</a>
+                <a href="#">View Project</a>
             </div>
         </div>
 
@@ -207,19 +220,20 @@
             <div class="entry-text">
                 <h2>Project Title 3</h2>
                 <p>This is a brief description of the project. It explains what the project is about and the technologies used.</p>
-                <a href="#" style="color: #ccff33;">View Project</a>
+                <a href="#">View Project</a>
             </div>
         </div>
     </section>
 
     <!-- Content Links Section -->
     <div class="content-links">
-        <a href="#about" style="color: #ff3333;">About</a>
-        <a href="#contact" style="color: #ff6633;">Contact</a>
-        <a href="#blogs" style="color: #ff9933;">Blogs</a>
-        <a href="#projects" style="color: #ffcc33;">Projects</a>
+        <a href="#about" style="color: #cc1200;">About</a>
+        <a href="#contact" style="color: #b31000;">Contact</a>
+        <a href="#blogs" style="color: #990e00;">Blogs</a>
+        <a href="#projects" style="color: #800b00;">Projects</a>
     </div>
 
 </body>
 
 </html>
+            

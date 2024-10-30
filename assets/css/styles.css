@@ -48,16 +48,7 @@ h1 {
     padding: 40px;
     background-color: white;
     color: #333;
-}
-
-.blogs .entry-text {
-    background-color: #cc1200;
-    color: white;
-}
-
-.projects .entry-text {
-    background-color: #b31000;
-    color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 
 .entry-text h2 {
@@ -73,33 +64,12 @@ h1 {
 
 .entry-text a {
     text-decoration: none;
-    color: #ffff33;
+    color: #cc1200;
     font-weight: bold;
 }
 
-/* Color Palette for Text Containers */
-.blogs .entry:nth-child(1) .entry-text {
-    background-color: #cc1200;
-}
-
-.blogs .entry:nth-child(2) .entry-text {
-    background-color: #b31000;
-}
-
-.blogs .entry:nth-child(3) .entry-text {
-    background-color: #990e00;
-}
-
-.projects .entry:nth-child(1) .entry-text {
-    background-color: #800b00;
-}
-
-.projects .entry:nth-child(2) .entry-text {
-    background-color: #660900;
-}
-
-.projects .entry:nth-child(3) .entry-text {
-    background-color: #4d0700;
+.entry-text a:hover {
+    color: #990e00;
 }
 
 /* Content Links Section */

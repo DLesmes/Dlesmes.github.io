@@ -1,0 +1,5 @@
+{
+  "name": "Personal Portfolio",
+  "description": "A modern, minimal, single-page personal portfolio website built with React and Tailwind CSS, featuring sections for projects, blog posts, recommended videos, and contact information.",
+  "requestFramePermissions": []
+}

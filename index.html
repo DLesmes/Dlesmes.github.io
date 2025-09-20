@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>[Your Name] | [Your Role]</title>
+
+    <!-- SEO & OG Tags -->
+    <meta name="description" content="[Your Name] - A passionate [Your Role] based in [Your City]. Explore my projects, writings, and more." />
+    <meta property="og:title" content="[Your Name] | [Your Role]" />
+    <meta property="og:description" content="Explore my portfolio of projects, articles, and recommended content." />
+    <meta property="og:image" content="https://picsum.photos/1200/630" />
+    <meta property="og:url" content="[Your Website URL]" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            colors: {
+              'base': '#0B0C10',
+              'surface': '#16181D',
+              'text-primary': '#E6E9EE',
+              'text-secondary': '#A0AEC0',
+              'accent': '#F43F5E',
+              'accent-hover': '#E11D48',
+            },
+            backgroundImage: {
+              'gradient-overlay': 'linear-gradient(to top, rgba(11, 12, 16, 1) 0%, rgba(11, 12, 16, 0.8) 50%, rgba(11, 12, 16, 1) 100%)',
+            }
+          }
+        }
+      }
+    </script>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "react/": "https://aistudiocdn.com/react@^19.1.1/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-base text-text-primary font-sans antialiased">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

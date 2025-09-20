@@ -50,7 +50,7 @@ const Header: React.FC<HeaderProps> = ({ navLinks, activeSection }) => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
             <a href="#me" className="text-xl font-extrabold text-text-primary group">
-              [Your Name] <span className="text-accent group-hover:animate-pulse transition-transform duration-300 inline-block">.</span>
+              Ing. Lesmes <span className="text-accent group-hover:animate-pulse transition-transform duration-300 inline-block">.</span>
             </a>
             <nav className="hidden md:block">
               <NavLinks />

@@ -113,10 +113,10 @@ const App: React.FC = () => {
         <Section id="me" imageUrl="https://picsum.photos/seed/me/1920/1080" onVisible={handleSectionVisible}>
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tighter leading-tight mb-4">
-              Hi, I'm [Your Name] <span role="img" aria-label="waving hand">👋</span>
+              Hi, I'm Ing. Lesmes <span role="img" aria-label="waving hand">👋</span>
             </h1>
             <p className="text-xl md:text-2xl text-text-secondary mb-8">
-              I'm a <span className="text-accent font-bold">[Your Role]</span> from [Your City], passionate about building beautiful, functional, and user-centric digital experiences.
+              I'm an <span className="text-accent font-bold">AI developer (Vibe Code Cleanup Specialist)</span> from Bogotá Colombia 🇨🇴, passionate about building beautiful, functional, and user-centric digital experiences.
             </p>
             <a href="#projects" className="inline-block bg-accent hover:bg-accent-hover text-white font-bold py-3 px-8 rounded-lg text-lg transition-transform duration-300 hover:scale-105 shadow-lg">
               View My Work
@@ -169,7 +169,7 @@ const App: React.FC = () => {
       </main>
 
       <footer className="bg-base py-6 text-center text-text-secondary text-sm">
-        <p>&copy; {new Date().getFullYear()} [Your Name]. All Rights Reserved.</p>
+        <p>&copy; {new Date().getFullYear()} Ing. Lesmes. All Rights Reserved.</p>
         <p>Built with React, TypeScript, and Tailwind CSS.</p>
       </footer>
 

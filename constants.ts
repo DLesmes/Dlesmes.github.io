@@ -1,4 +1,3 @@
-
 import type { NavLink, Project, Post, Video, ContactLink } from './types';
 
 export const NAV_LINKS: NavLink[] = [
@@ -11,27 +10,27 @@ export const NAV_LINKS: NavLink[] = [
 
 export const PROJECTS_DATA: Project[] = [
   {
-    title: 'Project Alpha',
-    description: 'A cutting-edge data visualization platform built with React, D3, and TypeScript. Transforms complex datasets into interactive narratives.',
-    tags: ['React', 'TypeScript', 'D3.js', 'Tailwind CSS'],
-    imageUrl: 'https://picsum.photos/seed/project1/600/400',
-    liveUrl: '#',
-    repoUrl: '#',
+    title: 'ETA Agent System',
+    description: 'The ETA Agent System is an AI-driven logistics anomaly handling and ETA optimization platform. It provides intelligent chat-based interactions for both logistics users and drivers, with real-time integration to weather and traffic APIs for accurate ETA predictions.',
+    tags: ['Streamlit', 'FastAPI', 'SQLite', 'OpenAI GPT-4', 'LangChain', 'Docker'],
+    imageUrl: '/images/eta-agent-system.png',
+    liveUrl: 'https://github.com/DLesmes/tt_hk_lai/tree/main',
+    repoUrl: 'https://github.com/DLesmes/tt_hk_lai/tree/main',
   },
   {
-    title: 'E-commerce Fusion',
-    description: 'Scalable e-commerce backend with a headless architecture using Node.js and GraphQL, powering a seamless shopping experience.',
-    tags: ['Node.js', 'GraphQL', 'PostgreSQL', 'Docker'],
-    imageUrl: 'https://picsum.photos/seed/project2/600/400',
-    repoUrl: '#',
+    title: 'Jobbot',
+    description: 'Is a Telegram LLM-powered chatbot designed to simplify your job search. It scrapes the latest job postings from LinkedIn based on your specified keywords, then uses a hybrid recommendation system to identify the most relevant opportunities. This system leverages vector databases, business heuristics, and NLP techniques like keyword extraction and language identification, enhanced with Open CLIP embeddings for state-of-the-art semantic understanding. JobBot delivers personalized job recommendations directly to your Telegram, streamlining your job hunt and connecting you with the best-matched roles.',
+    tags: ['Python 3.12', 'Docker', 'Telegram API', 'NLP', 'Open CLIP', 'Vector DB'],
+    imageUrl: '/images/jobbot.png',
+    repoUrl: 'https://github.com/DLesmes/jobbot/blob/main/README.md',
   },
-    {
-    title: 'Project Beta',
-    description: 'A serverless micro-frontend application that handles user authentication and profiles with AWS Lambda and React.',
-    tags: ['React', 'Serverless', 'AWS', 'Micro-frontends'],
-    imageUrl: 'https://picsum.photos/seed/project3/600/400',
-    liveUrl: '#',
-    repoUrl: '#',
+  {
+    title: 'Gemma Python Chatbot',
+    description: 'Gemma Python Chatbot 🚀🚀 to answer common questions about the 🐍 Python programming language. This code is generated for the kaggel competition Google – AI Assistants for Data Tasks with Gemma Build tools to assist Kaggle developers',
+    tags: ['Google Gemma', 'PyTorch', 'Python', 'Kaggle', 'AI/ML'],
+    imageUrl: 'https://i.postimg.cc/Nfpn7mxR/gemma.png',
+    liveUrl: 'https://www.kaggle.com/competitions/data-assistants-with-gemma/overview',
+    repoUrl: 'https://www.kaggle.com/code/dlesmes/gemma-python-chat-gpc',
   },
 ];
 
@@ -56,31 +55,31 @@ export const BLOG_POSTS_DATA: Post[] = [
 
 export const VIDEOS_DATA: Video[] = [
   {
-    title: 'The Primeagen: "The Last Data Structure You\'ll Ever Need"',
-    creator: 'The Primeagen',
-    duration: '21:43',
-    posterUrl: 'https://i.ytimg.com/vi/1locyv_2vKY/maxresdefault.jpg',
-    videoUrl: 'https://www.youtube.com/embed/1locyv_2vKY?autoplay=1&rel=0',
+    title: 'Fei-Fei Li: Spatial Intelligence is the Next Frontier in AI',
+    creator: 'Y Combinator',
+    duration: '44:21',
+    posterUrl: 'https://i.ytimg.com/vi/_PioN-CpOP0/maxresdefault.jpg',
+    videoUrl: 'https://www.youtube.com/embed/_PioN-CpOP0?autoplay=1&rel=0',
   },
   {
-    title: 'Fireship: "100+ Computer Science Concepts Explained"',
-    creator: 'Fireship',
-    duration: '12:51',
-    posterUrl: 'https://i.ytimg.com/vi/zOjov-2OZ0E/maxresdefault.jpg',
-    videoUrl: 'https://www.youtube.com/embed/zOjov-2OZ0E?autoplay=1&rel=0',
+    title: 'Introducing GPT-5',
+    creator: 'OpenAI',
+    duration: '1:29',
+    posterUrl: 'https://i.ytimg.com/vi/boJG84Jcf-4/maxresdefault.jpg',
+    videoUrl: 'https://www.youtube.com/embed/boJG84Jcf-4?autoplay=1&rel=0',
   },
-   {
-    title: 'Lex Fridman: "Sam Altman: OpenAI, GPT-5, Sora, and the Future of AGI"',
-    creator: 'Lex Fridman',
-    duration: '2:49:15',
-    posterUrl: 'https://i.ytimg.com/vi/DYzT-Pk6Ogw/maxresdefault.jpg',
-    videoUrl: 'https://www.youtube.com/embed/DYzT-Pk6Ogw?autoplay=1&rel=0',
+  {
+    title: '12-Factor Agents: Patterns of reliable LLM applications — Dex Horthy, HumanLayer',
+    creator: 'AI Engineer',
+    duration: '17:05',
+    posterUrl: 'https://i.ytimg.com/vi/8kMaTybvDUw/maxresdefault.jpg',
+    videoUrl: 'https://www.youtube.com/embed/8kMaTybvDUw?autoplay=1&rel=0',
   },
 ];
 
 export const CONTACT_LINKS_DATA: ContactLink[] = [
-    { name: 'GitHub', url: 'https://github.com/[YourUsername]' },
-    { name: 'LinkedIn', url: 'https://linkedin.com/in/[YourUsername]' },
-    { name: 'X', url: 'https://x.com/[YourUsername]' },
-    { name: 'Email', url: 'mailto:[your.email@example.com]' },
+    { name: 'GitHub', url: 'https://github.com/DLesmes' },
+    { name: 'LinkedIn', url: 'https://linkedin.com/in/diegolesmes-lnkdn' },
+    { name: 'X', url: 'https://x.com/Dalejmez' },
+    { name: 'Email', url: 'mailto:dalejandro25201@gmail.com' },
 ];

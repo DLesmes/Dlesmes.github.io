@@ -1,90 +1,62 @@
+
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Personal Website</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/styles.css">
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ing. Lesmes - Portfolio</title>
+
+    <!-- SEO & OG Tags -->
+    <meta name="description" content="Ing. Lesmes - AI developer | Data Science Consultant | AI/ML/DS Developer | ML Engineer | Data Scientist | Energy Market Analyst | Entrepreneur | Industrial Engineer" />
+    <meta property="og:title" content="Ing. Lesmes - Portfolio" />
+    <meta property="og:description" content="AI developer | Data Science Consultant | AI/ML/DS Developer | ML Engineer | Data Scientist | Energy Market Analyst | Entrepreneur | Industrial Engineer" />
+    <meta property="og:image" content="https://picsum.photos/1200/630" />
+    <meta property="og:url" content="https://dlesmes.github.io" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+            },
+            colors: {
+              'base': '#0B0C10',
+              'surface': '#16181D',
+              'text-primary': '#E6E9EE',
+              'text-secondary': '#A0AEC0',
+              'accent': '#F43F5E',
+              'accent-hover': '#E11D48',
+            },
+            backgroundImage: {
+              'gradient-overlay': 'linear-gradient(to top, rgba(11, 12, 16, 1) 0%, rgba(11, 12, 16, 0.8) 50%, rgba(11, 12, 16, 1) 100%)',
+            }
+          }
+        }
+      }
+    </script>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "react/": "https://aistudiocdn.com/react@^19.1.1/"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
 </head>
-
-<body>
-    <header>
-        <h1>My Personal Website</h1>
-    </header>
-
-    <!-- Blogs Section -->
-    <section id="blogs" class="blogs">
-        <h2 class="section-title">Blogs</h2>
-        
-        <div class="entry">
-            <img src="https://via.placeholder.com/1200x800" alt="Blog Image 1">
-            <div class="entry-text">
-                <h2>Blog Post Title 1</h2>
-                <p>This is a short summary of the blog post. It gives the readers a preview of what the post is about.</p>
-                <a href="#">Read More</a>
-            </div>
-        </div>
-
-        <div class="entry">
-            <img src="https://via.placeholder.com/1200x800" alt="Blog Image 2">
-            <div class="entry-text">
-                <h2>Blog Post Title 2</h2>
-                <p>This is a short summary of the blog post. It gives the readers a preview of what the post is about.</p>
-                <a href="#">Read More</a>
-            </div>
-        </div>
-
-        <div class="entry">
-            <img src="https://via.placeholder.com/1200x800" alt="Blog Image 3">
-            <div class="entry-text">
-                <h2>Blog Post Title 3</h2>
-                <p>This is a short summary of the blog post. It gives the readers a preview of what the post is about.</p>
-                <a href="#">Read More</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <h2 class="section-title">Projects</h2>
-
-        <div class="entry">
-            <img src="https://via.placeholder.com/1200x800" alt="Project Image 1">
-            <div class="entry-text">
-                <h2>Project Title 1</h2>
-                <p>This is a brief description of the project. It explains what the project is about and the technologies used.</p>
-                <a href="#">View Project</a>
-            </div>
-        </div>
-
-        <div class="entry">
-            <img src="https://via.placeholder.com/1200x800" alt="Project Image 2">
-            <div class="entry-text">
-                <h2>Project Title 2</h2>
-                <p>This is a brief description of the project. It explains what the project is about and the technologies used.</p>
-                <a href="#">View Project</a>
-            </div>
-        </div>
-
-        <div class="entry">
-            <img src="https://via.placeholder.com/1200x800" alt="Project Image 3">
-            <div class="entry-text">
-                <h2>Project Title 3</h2>
-                <p>This is a brief description of the project. It explains what the project is about and the technologies used.</p>
-                <a href="#">View Project</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Content Links Section -->
-    <div class="content-links">
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
-        <a href="#blogs">Blogs</a>
-        <a href="#projects">Projects</a>
-    </div>
-
-</body>
+  <body class="bg-base text-text-primary font-sans antialiased">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
 </html>
